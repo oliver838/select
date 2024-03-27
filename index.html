@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Déli gyümölcsök</h1>
+      <h4>Neked melyik a kedvenced?</h4>
+      <select id="gyumolcs" onchange="showDetails(this)">
+        <option value="0">válassz...</option>
+      </select>
+    </div>
+    <br>
+<div class="row">
+  <div class="col-md-5"></div>
+  <div class="col-md-2"></div>
+</div>
+
+    <script src="data_fruits.js"></script>
+    <script>
+
+      //az oldal betöltődésekor:
+      fruits.forEach((obj) => {
+        document.getElementById("gyumolcs").innerHTML += `
+            <option value=${obj.id}>${obj.name}</option>
+            `;
+      });
+
+      function showDetails(domObj) {
+        let id = domObj.value;
+        console.log(id);
+        let selectedObj = fruits.find((obj) => obj.id == id);
+        document.querySelector(".col-md-5").innerHTML=`<img src="img/${selectedObj.image}" alt="">`
+        document.querySelector(".col-md-2").innerHTML=selectedObj.descr
+        console.log(selectedObj.descr); 
+      }
+    </script>
+  </body>
+</html>
